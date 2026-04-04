@@ -1,0 +1,384 @@
+/* ===== RESET & BASE STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f1ec;
+    color: #222222;
+}
+
+/* ===== NAVIGATION BAR ===== */
+.navbar {
+    background-color: #1a1a1a;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #333;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 65px;
+}
+
+/* Logo */
+.nav-logo {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.nav-logo:hover {
+    color: #aaaaaa;
+}
+
+/* Right side of navbar */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 5px;
+}
+
+.nav-links li a {
+    color: #cccccc;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.nav-links li a.active {
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: bold;
+}
+
+/* Social Icons in Navbar */
+.nav-socials {
+    display: flex;
+    gap: 15px;
+    padding-left: 15px;
+    border-left: 1px solid #444;
+}
+
+.nav-socials a {
+    color: #cccccc;
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-socials a:hover {
+    color: #ffffff;
+    transform: scale(1.2);
+}
+
+/* Hamburger Button (hidden on desktop) */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* ===== MAIN CONTENT ===== */
+.content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 30px;
+}
+
+/* ===== PROFILE ROW (Side by Side) ===== */
+.profile-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 60px;
+}
+
+/* Left: Profile Picture */
+.profile-left {
+    flex-shrink: 0;
+}
+
+.profile-pic {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #d0ccc5;
+    transition: border-color 0.3s ease;
+}
+
+.profile-pic:hover {
+    border-color: #1a1a1a;
+}
+
+/* ===== PROFILE LINKS (Under Picture) ===== */
+.profile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 25px;
+    width: 280px;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #555555;
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.profile-link:hover {
+    background-color: #e8e4dd;
+    color: #1a1a1a;
+}
+
+.profile-link i {
+    font-size: 1.2rem;
+    width: 22px;
+    text-align: center;
+    color: #888888;
+    transition: color 0.3s ease;
+}
+
+.profile-link:hover i {
+    color: #1a1a1a;
+}
+
+.profile-link span {
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.profile-link:hover span {
+    border-bottom: 1px solid #1a1a1a;
+}
+
+/* Right: Info */
+.profile-right {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 10px;
+}
+
+.profile-right h1 {
+    color: #1a1a1a;
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+.tagline {
+    color: #666666;
+    font-size: 1.15rem;
+}
+
+.email-link {
+    color: #555555;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 8px 22px;
+    border: 1px solid #c0bbb3;
+    border-radius: 25px;
+    display: inline-block;
+    width: fit-content;
+    transition: all 0.3s ease;
+}
+
+.email-link:hover {
+    color: #ffffff;
+    background-color: #1a1a1a;
+    border-color: #1a1a1a;
+}
+
+.email-link i {
+    margin-right: 6px;
+}
+
+/* Intro Text */
+.intro-text {
+    margin-top: 10px;
+}
+
+.intro-text p {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: #444444;
+}
+
+/* Inline links (e.g., Dr. Doug Noll) */
+.inline-link {
+    color: #1a1a1a;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid #c0bbb3;
+    transition: border-color 0.3s ease;
+}
+
+.inline-link:hover {
+    border-color: #1a1a1a;
+}
+
+/* ===== RESPONSIVE DESIGN (Mobile) ===== */
+@media (max-width: 768px) {
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-right {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        background-color: #1a1a1a;
+        padding: 15px 0;
+        border-bottom: 1px solid #333;
+    }
+
+    .nav-right.show {
+        display: flex;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-links li a {
+        padding: 15px 20px;
+        border-radius: 0;
+        width: 100%;
+        display: block;
+    }
+
+    .nav-socials {
+        border-left: none;
+        border-top: 1px solid #444;
+        padding: 15px 20px 5px;
+        justify-content: center;
+        gap: 25px;
+    }
+
+    .nav-socials a {
+        font-size: 1.6rem;
+    }
+
+    /* Stack profile on mobile */
+    .profile-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .profile-pic {
+        width: 200px;
+        height: 200px;
+    }
+
+    .profile-right {
+        align-items: center;
+        padding-top: 0;
+    }
+
+    .profile-right h1 {
+        font-size: 1.9rem;
+    }
+
+    .email-link {
+        margin: 0 auto;
+    }
+    
+    /* Center profile links on mobile */
+    .profile-links {
+        width: 100%;
+        max-width: 280px;
+        margin: 25px auto 0;
+    }
+
+    .profile-link {
+        justify-content: center;
+    }
+
+    /* ===== PROFILE LINKS (Under Picture) ===== */
+.profile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 25px;
+    width: 280px;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #555555;
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.profile-link:hover {
+    background-color: #e8e4dd;
+    color: #1a1a1a;
+}
+
+.profile-link i {
+    font-size: 1.2rem;
+    width: 22px;
+    text-align: center;
+    color: #888888;
+    transition: color 0.3s ease;
+}
+
+.profile-link:hover i {
+    color: #1a1a1a;
+}
+
+.profile-link span {
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.profile-link:hover span {
+    border-bottom: 1px solid #1a1a1a;
+}
+}
