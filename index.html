@@ -16,9 +16,14 @@
 
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <div class="nav-container">
+        <div class="nav-left">
+            <a href="index.html" class="nav-icon-link" aria-label="Home">
+                <img src="images/mybrain.png" alt="Brain icon" class="nav-icon">
+            </a>
             <a href="index.html" class="nav-logo">David Frey</a>
+        </div>
 
+        <div class="nav-container">
             <button class="nav-toggle" aria-label="Toggle navigation">
                 &#9776;
             </button>
@@ -48,8 +53,11 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="content">
+        <!-- Hero -->
+        <div class="hero" role="img" aria-label="Hero background"></div>
+
+        <!-- Main Content -->
+        <main class="content">
         <!-- Profile + Info Row -->
         <div class="profile-row">
 
@@ -57,8 +65,12 @@
             <div class="profile-left">
                 <img src="images/propic.png" alt="Profile picture of David Frey" class="profile-pic">
 
-                <!-- Links Under Profile Picture -->
-                <div class="profile-links">
+                <div class="profile-card">
+                    <h1><span>David Frey</span></h1>
+                    <p class="tagline">PhD Student at the University of Michigan</p>
+
+                    <!-- Links Under Profile Picture -->
+                    <div class="profile-links">
                     <a href="mailto:djfrey@umich.edu" class="profile-link">
                         <i class="fas fa-envelope"></i>
                         <span>djfrey@umich.edu</span>
@@ -79,20 +91,20 @@
                         <i class="ai ai-google-scholar"></i>
                         <span>Google Scholar</span>
                     </a>
+                    </div>
                 </div>
             </div>
 
             <!-- Right: Info -->
             <div class="profile-right">
-                <h1>David Frey</h1>
-                <p class="tagline">PhD Student at the University of Michigan</p>
+                <h1>About me:</h1>
 
                 <div class="intro-text">
                     <p>
-                        Welcome to my personal website. I'm a PhD student at the
-                        University of Michigan studying novel acquisition and
-                        reconstruction techniques for silent functional MRI at the <a href="https://fmri.research.umich.edu/" target="_blank" class="inline-link">
-                            Functional MRI Laboratory</a> under
+                        I'm a PhD student at the
+                        University of Michigan <a href="https://fmri.research.umich.edu/" target="_blank" class="inline-link">
+                            Functional MRI Laboratory</a> studying novel acquisition and
+                        reconstruction techniques for silent functional MRI under
                         the supervision of
                         Dr. <a href="https://nollresearch.engin.umich.edu/" target="_blank" class="inline-link">
                             Doug Noll</a>.
@@ -103,7 +115,7 @@
                             Jesse Hamilton</a> during my PhD rotations at <a href="https://miitt.med.umich.edu/" target="_blank" class="inline-link">
                                 MIITT</a>.
                         My interests include k-space trajectory optimization and model-based
-                        image reconstruction techniques, particularly for non-cartesian dynamic MRI.
+                        image reconstruction techniques, particularly for accelerated 3D non-cartesian dynamic MRI.
                         In my free time, I also coach and compete in olympic weightlifting!
                     </p>
                 </div>

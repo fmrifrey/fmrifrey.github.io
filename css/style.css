@@ -11,23 +11,78 @@ body {
     color: #222222;
 }
 
+/* Global variable for profile picture size so other containers can reference it */
+:root {
+    --profile-pic-size: 280px;
+    --nav-height: 65px;
+}
+
 /* ===== NAVIGATION BAR ===== */
 .navbar {
-    background-color: #1a1a1a;
+    background-color: rgba(12, 12, 14, 0.9);
     padding: 0 20px;
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid #333;
 }
 
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
+/* Hero section under the navbar; scrolls with the page (not fixed). */
+.hero {
+    background-image: url('../images/hero.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    width: 100%;
+     height: 400px; /* adjust if you'd like the hero taller/shorter */
+     /* lift the hero so its top aligns with the top of the page while
+         keeping the navbar visually on top (navbar has higher z-index) */
+     margin-top: calc(-1 * var(--nav-height));
+     padding-top: var(--nav-height);
+    display: block;
+}
+
+/* Small gap so the main content sits on the page background below the hero */
+.hero + .content {
+    padding-top: 28px;
+}
+
+/* Left group: brain icon + name anchored to navbar left */
+.nav-left {
+    position: absolute;
+    left: 12px;
+    top: 0;
+    height: 100%;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    z-index: 1100;
+}
+
+.nav-icon-link {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    padding: 6px 8px 6px 0;
+    background: transparent;
+}
+
+.nav-icon {
+    height: 44px;
+    width: auto;
+    display: block;
+}
+
+/* Container for right-side nav items; spans full width and aligns right */
+.nav-container {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
     align-items: center;
     height: 65px;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 /* Logo */
@@ -124,19 +179,261 @@ body {
 /* Left: Profile Picture */
 .profile-left {
     flex-shrink: 0;
+    position: -webkit-sticky;
+    position: sticky;
+    top: calc(65px + 18px); /* clear the navbar (65px) + small gap */
+    /* needed for background box positioning on mobile fallback */
+    --profile-pic-size: 280px;
+}
+
+@media (min-width: 769px) {
+    /* nudge the left column slightly towards the page edge */
+    .profile-left {
+        margin-left: -28px;
+    }
+    /* keep the card centered with the avatar after nudge */
+    .profile-card {
+        transform: none;
+    }
+
+    /* Make the entire left profile (avatar + card) sticky so it stays
+       visible while scrolling. Nudge it up slightly from the top of the
+       viewport so the whole thing is visible. */
+    .profile-left {
+        position: -webkit-sticky;
+        position: sticky;
+        top: calc(65px + 18px);
+        align-self: start;
+        z-index: 80;
+        /* ensure the sticky element only takes the space it needs */
+        height: fit-content;
+    }
+}
+
+/* For larger desktop viewports make the profile column fixed so it remains
+   visible at all times regardless of the right-column height. Adjust the
+   main content padding so the fixed box doesn't overlap the content. */
+@media (min-width: 992px) {
+    .profile-left {
+        position: fixed;
+        top: calc(90px); /* clear navbar */
+        left: calc((100% - 1100px) / 2 - 28px); /* align with centered .content left edge, include nudge */
+        width: calc(var(--profile-pic-size) + 160px);
+        z-index: 90;
+    }
+
+    /* Make room for the fixed profile column so text doesn't sit underneath it */
+    .content {
+        padding-left: calc(var(--profile-pic-size) - 60px);
+    }
+
+    /* Also nudge the right column content within .content so it clears the
+       fixed profile column regardless of content container calculations. */
+    .profile-right {
+        margin-left: calc(var(--profile-pic-size) - 60px);
+    }
+
+    /* Ensure profile-card still centers within the fixed column */
+    .profile-card {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+/* Mobile: disable sticky behavior so layout flows normally on small screens */
+@media (max-width: 768px) {
+    .profile-left {
+        position: relative;
+        top: auto;
+        margin-left: 0;
+    }
 }
 
 .profile-pic {
-    width: 280px;
-    height: 280px;
+    --profile-pic-size: 300px;
+    width: var(--profile-pic-size);
+    height: var(--profile-pic-size);
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid #d0ccc5;
     transition: border-color 0.3s ease;
 }
 
+.profile-pic {
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    z-index: 60; /* ensure avatar sits above the profile card */
+}
+
 .profile-pic:hover {
     border-color: #1a1a1a;
+}
+
+/* Rounded box under left column starting at half the profile-pic height */
+.profile-card {
+    width: calc(var(--profile-pic-size) + 160px);
+    margin-top: calc(var(--profile-pic-size) * -0.4);
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(12, 12, 14, 0.9);
+    color: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.85);
+    padding: calc(var(--profile-pic-size) * 0.4) 18px 20px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+}
+
+/* subtle outline */
+.profile-card::after {
+    content: '';
+    position: absolute;
+    left: calc(50% - (var(--profile-pic-size) / 2) + 8px);
+    top: calc(var(--profile-pic-size) * 0.5 + 2px);
+    width: calc(var(--profile-pic-size) + 24px);
+    height: calc(100% - (var(--profile-pic-size) * 0.5) - 10px);
+    border-radius: 12px;
+    /* remove subtle white border so it doesn't show through semi-transparent card */
+    border: none;
+    pointer-events: none;
+    z-index: 9;
+}
+
+/* Ensure content sits above the background box */
+.profile-left > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Style the name inside the profile card (show it and make it prominent) */
+.profile-card h1 span {
+    display: inline-block !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #ffffff !important;
+    padding: 0 !important;
+}
+
+.profile-card h1 {
+    font-size: 2.1rem;
+    margin: 0 0 8px;
+    text-align: center;
+}
+
+/* Ensure avatar always floats above the card */
+.profile-pic {
+    z-index: 999 !important;
+}
+
+/* Add a visible border to help confirm presence */
+.profile-box {
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Make sure the box is clearly visible by adding a thin outline */
+.profile-left::after {
+    content: '';
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    top: calc(var(--profile-pic-size) / 2 + 2px);
+    bottom: 8px;
+    border-radius: 12px;
+    /* removed to avoid showing through translucent profile card */
+    border: none;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Dark theme for left column content so text contrasts with the black box */
+
+/* Force white text for profile-left so it contrasts with the dark box */
+.profile-left,
+.profile-left h1,
+.profile-left .tagline,
+.profile-left .profile-link,
+.profile-left .profile-link span {
+    color: #ffffff !important;
+}
+
+/* In the dark box, remove white badge styling from h1 span and make text white */
+.profile-left h1 span {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: #ffffff;
+    padding: 0;
+}
+
+.profile-left .profile-links .profile-link {
+    color: #eeeeee;
+    background: transparent;
+}
+
+.profile-left .profile-link:hover {
+    background-color: rgba(255,255,255,0.06);
+    color: #ffffff;
+}
+
+    /* Match navbar social icon behavior for links inside the profile card */
+    .profile-card .profile-link i {
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .profile-card .profile-link:hover i {
+        transform: scale(1.2);
+        color: #ffffff;
+    }
+
+    /* Make hover background (the "hover bar") span the full width of the profile card
+       and ensure only the icon scales on hover (not the entire link). */
+    .profile-card .profile-links {
+        width: 100%;
+        max-width: none;
+        padding: 0;
+    }
+    .profile-card .profile-link {
+        width: 100%;
+        box-sizing: border-box;
+        transition: background-color 0.25s ease, color 0.25s ease;
+    }
+    .profile-card .profile-link:hover {
+        background-color: rgba(255,255,255,0.06);
+        color: #ffffff;
+    }
+    .profile-card .profile-link span {
+        border-bottom: none;
+    }
+    .profile-card .profile-link:hover span {
+        border-bottom: none;
+    }
+
+/* Name & tagline under profile picture */
+.profile-left h1 {
+    margin-top: 10px;
+    font-size: 2.35rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: center;
+}
+
+.profile-left h1 span {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e6e2db;
+    box-shadow: 0 4px 12px rgba(26,26,26,0.06);
+}
+
+.profile-left .tagline {
+    margin-top: 10px;
+    text-align: center;
+    color: #666666;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 /* ===== PROFILE LINKS (Under Picture) ===== */
@@ -258,6 +555,11 @@ body {
         display: block;
     }
 
+    /* On small screens remove extra left padding so menu fits */
+    .nav-container {
+        padding-left: 12px;
+    }
+
     .nav-right {
         display: none;
         flex-direction: column;
@@ -268,6 +570,11 @@ body {
         background-color: #1a1a1a;
         padding: 15px 0;
         border-bottom: 1px solid #333;
+    }
+
+    /* Profile pic smaller on mobile: adjust size variable */
+    .profile-left {
+        --profile-pic-size: 200px;
     }
 
     .nav-right.show {
